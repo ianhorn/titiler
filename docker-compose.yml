@@ -1,8 +1,8 @@
 services:
-  titiler:
+  titiler: 
     # TODO: remove once https://github.com/rasterio/rasterio-wheels/issues/69 is resolved
     # See https://github.com/developmentseed/titiler/discussions/387
-    platform: linux/amd64
+    # platform: linux/amd64
     build:
       context: .
       dockerfile: dockerfiles/Dockerfile
@@ -53,20 +53,20 @@ services:
     volumes:
       - ./.github/data:/data
 
-  nginx-titiler:
-    extends:
-      service: titiler
-    command: ["uvicorn", "titiler.application.main:app", "--host", "0.0.0.0", "--port", "8081", "--workers", "1", "--proxy-headers", "--forwarded-allow-ips='*'", "--root-path=/api/v1/titiler"]
+  # nginx-titiler:
+  #   extends:
+  #     service: titiler
+  #   command: ["uvicorn", "titiler.application.main:app", "--host", "0.0.0.0", "--port", "8081", "--workers", "1", "--proxy-headers", "--forwarded-allow-ips='*'", "--root-path=/api/v1/titiler"]
 
-  nginx:
-    image: nginx
-    ports:
-      - 8080:80
-    volumes:
-      - ./dockerfiles/nginx.conf:/etc/nginx/nginx.conf
-    depends_on:
-      - nginx-titiler
-    command: ["nginx-debug", "-g", "daemon off;"]
+  # nginx:
+  #   image: nginx
+  #   ports:
+  #     - 8080:80
+  #   volumes:
+  #     - ./dockerfiles/nginx.conf:/etc/nginx/nginx.conf
+  #   depends_on:
+  #     - nginx-titiler
+  #   command: ["nginx-debug", "-g", "daemon off;"]
 
   titiler-xarray:
     extends:
