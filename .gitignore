@@ -7,7 +7,7 @@ package.zip
 __pycache__/
 *.py[cod]
 *$py.class
-
+misc.py
 # C extensions
 *.so
 stacfiles

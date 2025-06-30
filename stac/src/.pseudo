@@ -1,0 +1,18 @@
+"""Brainstorming"""
+
+How to create a stac item with a thumbnail using Titiler running
+on a local docker container.
+
+import modules:
+    requests
+    json
+    constants
+
+create functions:
+    1. Get Bounds = titiler/bounds from url
+        return list as a variable
+    2. create stac item properties from constants and bounds
+            datetime, assets (thumbnail from get bounds), with projection, raster, maybe eo
+    3. POST stac item to API
+
+Process on 1 file, then set up for multiprocessing
